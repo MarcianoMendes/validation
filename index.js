@@ -1,17 +1,16 @@
 var express = require('express');
-var bodyParser = require('body-parser');
-var flash = require('express-flash');
+var app = express();
+var flash = require("express-flash");
 var session = require('express-session');
+var bodyParser = require('body-parser');
 var cookieParser = require("cookie-parser");
-
-app = express();
 
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(cookieParser("jsaddsh"));
+app.use(cookieParser("fsljflsjflsjfl"));
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
@@ -21,8 +20,22 @@ app.use(session({
 
 app.use(flash());
 
+function verifyUndefined(value) {
+    if (value != undefined) {
+        if (value.length == 0) {
+            return undefined;
+        }
+    }
+
+    return value;
+}
+
 app.get('/', (request, response) => {
-    response.render('index');
+    var emailError = verifyUndefined(request.flash("emailError"));
+    var nameError = verifyUndefined(request.flash("nameError"));
+    var dotsError = verifyUndefined(request.flash("dotsError"));
+    var email =  verifyUndefined(request.flash("email"));
+    response.render('index', { emailError, nameError, dotsError, email: email});
 });
 
 app.post('/form', (request, response) => {
@@ -46,10 +59,16 @@ app.post('/form', (request, response) => {
     if (dots == undefined || dots < 20) {
         dotsError = 'Dots deve ser maior que 20!'
     }
-
-    if(nameError != undefined || emailError != undefined || dotsError != undefined) {
-        response.redirect('/');}
-    else{
+    console.log(nameError, emailError, dotsError);
+    if (nameError != undefined || emailError != undefined || dotsError != undefined) {
+        console.log(nameError, emailError, dotsError);
+        request.flash("emailError", emailError);
+        request.flash("nameError", nameError);
+        request.flash("dotsError", dotsError);
+        request.flash("email", email);
+        response.redirect('/');
+    }
+    else {
         response.send('Tudo certo');
     }
 })

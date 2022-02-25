@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vlidação de formulário</title>
+    <title>Validação de formulário</title>
 </head>
 
 <body>
     <form method="POST" action="/form">
-        <input type="email" id="email" name="email" placeholder="Email"><br>
+        <input type="email" id="email" name="email" placeholder="Email" value="<%= email %>"><br>
+        <%= emailError %> <br>
         <input type="text" id="name" name="name" placeholder="Nome"><br>
+        <%= nameError %> <br>
         <input type="number" id="dots" name="dots" placeholder="Pontos"><br>
+        <%= dotsError %> <br>
         <button type="submit">Enviar</button>
     </form>
 
