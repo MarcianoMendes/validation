@@ -1,0 +1,31 @@
+{
+  "name": "validation",
+  "version": "1.0.0",
+  "description": "Example of validation of formulary on backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcianoMendes/validation.git"
+  },
+  "keywords": [
+    "JavaScript;",
+    "HTML"
+  ],
+  "author": "Marciano Daniel Mendes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcianoMendes/validation/issues"
+  },
+  "homepage": "https://github.com/MarcianoMendes/validation#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.2"
+  }
+}
